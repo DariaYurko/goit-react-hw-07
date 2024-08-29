@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import { apiAddContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/contactsOps';
 
 import css from './ContactForm.module.css';
 
@@ -35,7 +35,7 @@ const ContactForm = () => {
       number,
     };
       // Відправка запиту
-      const thunk = apiAddContact(userProfile);
+      const thunk = addContact(userProfile);
       dispatch(thunk);
       
       actions.resetForm();

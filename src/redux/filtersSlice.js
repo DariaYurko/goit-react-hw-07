@@ -10,6 +10,7 @@ const filterSlice = createSlice({
   reducers: {
     changeFilter: (state, action) => {
       state.name = action.payload;
+      console.log('filter value', action.payload);
     },
   },
 });
@@ -22,32 +23,3 @@ export const { changeFilter } = filterSlice.actions;
 
 export const selectNameFilter = state => state.filters.name;
 // ----------------------------------------------------------------------------------/
-
-
-// /**
-//  *  ------- Reducer
-//  *
-//  */
-// export const filterReducer = (state = INITIAL_STATE, action) => {
-//   switch (action.type) {
-//     case 'filter/setFilterValue': {
-//       return {
-//         ...state,
-//         filterValue: action.payload,
-//       };
-//     }
-//     default:
-//       return state;
-//   }
-// };
-
-// /**
-//  * -------- Action creators
-//  *
-//  */
-// export const setFilterValue = (filterValue) => {
-//    return {
-//      type: 'filter/setFilterValue',
-//      payload: filterValue,
-//    };
-// }

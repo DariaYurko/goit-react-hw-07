@@ -4,14 +4,14 @@ import { AiFillPhone } from 'react-icons/ai';
 import css from './Contact.module.css';
 
 import { useDispatch } from 'react-redux';
-import { apiDeleteContact } from '../../redux/contactsSlice';
+import { deleteContact } from '../../redux/contactsOps';
 
 const Contact = ({ contactId, name, phone }) => {
   const dispatch = useDispatch();
 
   const handleClick = contactId => {
     // Відправка запиту
-    const thunk = apiDeleteContact(contactId);
+    const thunk = deleteContact(contactId);
     dispatch(thunk);
   };
 
