@@ -1,0 +1,18 @@
+.filterField {
+   text-align: center;
+}
+
+.filterFieldInput {
+   height: 20px;
+   padding: 8px 10px;
+   border: 1px solid grey;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: box-shadow 300ms linear;
+}
+
+.filterFieldInput:hover,
+.filterFieldInput:focus {
+   box-shadow: 0px 0px 1px 1px rgb(94, 184, 154);
+   outline: transparent;
+}
