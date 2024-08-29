@@ -66,16 +66,16 @@ const INITIAL_STATE = {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: INITIAL_STATE,
-  reducers: {
-    // addContact: (state, action) => {
-    //   state.items = [action.payload, ...state.items];
-    // },
-    // deleteContact: (state, action) => {
-    //   state.items = state.items.filter(
-    //     contact => contact.id !== action.payload
-    //   );
-    // },
-  },
+  // reducers: {
+  //   addContact: (state, action) => {
+  //     state.items = [action.payload, ...state.items];
+  //   },
+  //   deleteContact: (state, action) => {
+  //     state.items = state.items.filter(
+  //       contact => contact.id !== action.payload
+  //     );
+  //   },
+  // },
 
   // Підписка нa три типи actions які повертає санка
   extraReducers: builder => {
@@ -114,7 +114,7 @@ const contactsSlice = createSlice({
       })
       .addCase(apiAddContact.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items.push(action.payload)
+        state.items.unshift(action.payload)
       })
       .addCase(apiAddContact.rejected, (state, action) => {
         state.isLoading = false;

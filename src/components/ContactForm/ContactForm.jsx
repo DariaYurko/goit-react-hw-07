@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-// import { nanoid } from 'nanoid';
 import { ErrorMessage } from 'formik';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -32,11 +31,10 @@ const ContactForm = () => {
     const number = values.number;
     
     const userProfile = {
-      // id: nanoid(),
       name,
       number,
     };
-      // 1. Відправка запиту
+      // Відправка запиту
       const thunk = apiAddContact(userProfile);
       dispatch(thunk);
       
