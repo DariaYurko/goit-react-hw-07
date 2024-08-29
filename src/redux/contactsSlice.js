@@ -1,12 +1,28 @@
-// import items from '../contacts.json';
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// const INITIAL_STATE = {
-//   items, // [{ "id": "id-1", "name": "Rosie Simpson", "number": "459-12-56" }, ...] 
-// };
+// -------------- Створення санки ---------------- /
+export const apiGetAllContatcs = createAsyncThunk(
+  "contacts/getContacts",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get(
+        'https://66d005b1181d059277dcefe5.mockapi.io/contacts'
+      );
+      // console.log('data', data);
+      return data; // data потрапить в action.payload
+
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.message); // err потрапить в action.payload
+    }
+  }
+)
+// --------------------------------------------- /
 
 const INITIAL_STATE = {
   items: [],
+  isLoading: false,
+  error: null,
 };
 
 const contactsSlice = createSlice({
@@ -21,6 +37,22 @@ const contactsSlice = createSlice({
         contact => contact.id !== action.payload
       );
     },
+  },
+
+  // Підписка нa три типи actions які повертає санка
+  extraReducers: (builder) => {
+    return builder
+      .addCase(apiGetAllContatcs.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(apiGetAllContatcs.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload
+      }).addCase(apiGetAllContatcs.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload
+      });
   },
 });
 
