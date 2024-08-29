@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { ErrorMessage } from 'formik';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { apiAddContact } from '../../redux/contactsSlice';
 
 import css from './ContactForm.module.css';
 
@@ -32,14 +32,13 @@ const ContactForm = () => {
     const number = values.number;
     
     const userProfile = {
-      id: nanoid(),
+      // id: nanoid(),
       name,
       number,
     };
-      // 1. Створення команди
-      const action = addContact(userProfile);
-      // 2. Доставка команди в Store
-      dispatch(action);
+      // 1. Відправка запиту
+      const thunk = apiAddContact(userProfile);
+      dispatch(thunk);
       
       actions.resetForm();
     };

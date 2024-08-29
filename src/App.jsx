@@ -6,7 +6,7 @@ import './App.css';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { apiGetAllContatcs, selectLoader } from './redux/contactsSlice';
+import { apiGetAllContatcsThunk, selectLoader } from './redux/contactsSlice';
 
 const App = () => {
   //-------------------------------------- /
@@ -14,10 +14,10 @@ const App = () => {
 
   // задіспатчили санку після рендеру сторінки
   useEffect(() => {
-    dispatch(apiGetAllContatcs());
+    dispatch(apiGetAllContatcsThunk());
   }, [dispatch]);
 
-  
+
   const isLoading = useSelector(selectLoader);
   //-------------------------------------- /
 
