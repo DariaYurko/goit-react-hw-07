@@ -56,15 +56,21 @@ const contactsSlice = createSlice({
   },
 });
 
-// ---------- Reducer
+// --------------- Reducer
 export const contactsReducer = contactsSlice.reducer;
 
 // --------------  Action creators
 export const { addContact, deleteContact } = contactsSlice.actions;
 
+
+// ----
 export const selectContacts = (state) => {
   return state.contacts.items;
 };
+
+export const selectLoader = (state) => {
+  return state.contacts.isLoading;
+}
 
 // ----------------------------------------------------------------------------------/
 
