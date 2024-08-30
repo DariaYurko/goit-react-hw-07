@@ -26,10 +26,9 @@ export const deleteContact = createAsyncThunk(
       const { data } = await axios.delete(
         `https://66d005b1181d059277dcefe5.mockapi.io/contacts/${contactID}`
       );
-      // console.log('deleted contsct', data);
-      return data; // data потрапить в action.payload
+      return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message); // err потрапить в action.payload
+      return thunkApi.rejectWithValue(err.message);
     }
   }
 );
@@ -44,7 +43,6 @@ export const addContact = createAsyncThunk(
         `https://66d005b1181d059277dcefe5.mockapi.io/contacts`,
         contactData
       );
-      // console.log(data);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.message);
