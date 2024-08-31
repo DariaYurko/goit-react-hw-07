@@ -2,7 +2,6 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, deleteContact, addContact } from './contactsOps';
 import { selectNameFilter } from './filtersSlice';
 
-
 const INITIAL_STATE = {
   items: [],
   isLoading: false,
@@ -12,8 +11,7 @@ const INITIAL_STATE = {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: INITIAL_STATE,
-  reducers: {
-  },
+  reducers: {},
 
   // Обробка actions які повертає санка
   extraReducers: builder => {
@@ -82,8 +80,10 @@ export const selectFilteredContacts = createSelector(
   // Масив вхідних селекторів
   [selectContacts, selectNameFilter],
   // Функція перетворювач
-  () => {
-    // Виконуємо обчислення та повертаємо результат
+  (contacts, filtredValue) => {
+    contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(filtredValue.toLowerCase());
+    });
   }
 );
 // ----------------------------------------------------------------------------------/
