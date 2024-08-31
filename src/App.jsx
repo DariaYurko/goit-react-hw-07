@@ -2,7 +2,6 @@ import SearchBox from './components/SearchBox/SearchBox';
 import ContactList from './components/ContactList/ContactList';
 import ContactForm from './components/ContactForm/ContactForm';
 import Loader from './components/Loader/Loader';
-// import Error from './components/Error/Error';
 import './App.css';
 
 import { useEffect } from 'react';
@@ -14,7 +13,7 @@ const App = () => {
   //-------------------------------------- /
   const dispatch = useDispatch();
 
-  // задіспатчили санку після рендеру сторінки
+  // Задіспатчили санку після рендеру сторінки
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -27,13 +26,10 @@ const App = () => {
   return (
     <>
       <h1>Phonebook</h1>
-
       <ContactForm />
       <SearchBox />
       {isLoading && <Loader />}
-
       <ContactList />
-
     </>
   );
 };

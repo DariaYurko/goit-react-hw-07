@@ -75,13 +75,13 @@ export const selectError = state => {
   return state.contacts.error;
 };
 
-// ---------------------------------------------------/
+
 export const selectFilteredContacts = createSelector(
   // Масив вхідних селекторів
   [selectContacts, selectNameFilter],
   // Функція перетворювач
   (contacts, filtredValue) => {
-    contacts.filter(contact => {
+    return contacts.filter(contact => {
       return contact.name.toLowerCase().includes(filtredValue.toLowerCase());
     });
   }
